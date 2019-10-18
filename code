@@ -1,0 +1,59 @@
+    static int cantX = 10;
+    static int cantY = 10;
+    static int qtyShips = 10;
+
+    //reglas
+    public static void main(String[] args) {
+        String[][] matrix = new String[cantX][cantY];
+        String[][] matrix2 = new String[cantX][cantY];
+        cleanMx(matrix);
+        cleanMx(matrix2);
+
+        showMx(matrix);
+        setShips(matrix);
+        showMx(matrix);
+
+    }
+
+    /**
+     * Dejar todos los espacios con [ ]
+     *
+     * @param mx Matriz a "limpiar"
+     */
+    public static void cleanMx(String[][] mx) {
+        Random rnum = new Random();
+        for (int i = 0; i < cantX; i++) {
+            for (int j = 0; j < cantY; j++) {
+                mx[i][j] = "[ ]";
+            }
+        }
+    }
+
+    public static void setShips(String[][] emptyMx) {
+        Random rnum = new Random();
+   
+        int shipsReady = 0;
+
+        do {
+            int x = rnum.nextInt(cantX);
+            int y = rnum.nextInt(cantY);
+
+            if (emptyMx[x][y] != "[°]") {
+                emptyMx[x][y] = "[°]";
+                shipsReady++;
+            }
+        } while (shipsReady != qtyShips);
+    }
+    
+    
+
+    public static void showMx(String[][] a) {
+        for (int i = 0; i < cantX; i++) {
+            for (int j = 0; j < cantY; j++) {
+                System.out.print(a[i][j] + "\t");
+            }
+            System.out.println("");
+        }
+        System.out.println("");
+    }
+}
